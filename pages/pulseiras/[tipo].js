@@ -59,7 +59,7 @@ export default function Pulseiras(props) {
         cliente: nomeCliente,
         entrega: dataEntrega,
       }
-      const r = await axios.put("/api/addPedido", {data: data})
+      const r = await axios.put("https://miu-miu-store.vercel.app/api/addPedido", {data: data})
       if( r.data.msg == "OK"){
         router.push("/")
       }
@@ -72,7 +72,7 @@ export default function Pulseiras(props) {
         cliente: nomeCliente,
         entrega: dataEntrega,
       }
-      const r = await axios.put("/api/addPedido", {data: data})
+      const r = await axios.put("https://miu-miu-store.vercel.app/api/addPedido", {data: data})
       if( r.data.msg == "OK"){
         alert("Pedido Registrado Com Sucesso Voltando Para Pagina Inicial")
         router.push("/")

@@ -5,6 +5,7 @@ import axios from "axios";
 import { BsInstagram, BsWhatsapp } from "react-icons/bs";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 export const getServerSideProps = async (ctx) => {
     let uid = ctx.query.pedido
@@ -22,16 +23,29 @@ export default function Pedidos(props) {
   const [data, setData] = useState(props.pedido.data.data)
   const [dateRegs, setDateRegs] = useState(null)
   const [dateEntr, setDateEntr] = useState(null)
+  const router = useRouter()
 
   useEffect(()=>{
     let dr = new Date(props.pedido.data.addIn)
     setDateRegs(`${dr.getUTCDate()}/${dr.getUTCMonth() + 1}/${dr.getFullYear()} as ${dr.getHours()}:${dr.getMinutes()}`)
     let de = data.entrega.split("-")
     setDateEntr(`${de[2]}/${de[1]}/${de[0]}`)
-
-
   },[])
   
+  const handleDelete = async (e) => {
+    e.preventDefault()
+
+    const payload = {
+      remove_id:props.pedido.uid
+    }
+    const r = await axios.delete("/api/removePedido", {data: payload})
+
+    if(r.data.msg === "OK"){
+      alert("Pedido Removido Com Sucesso! Voltando Para A paginha de Pedidos")
+      router.push("/gerenciamento/pedidos/")
+    }
+  }
+
   return (
     <>
       <Header />
@@ -46,18 +60,22 @@ export default function Pedidos(props) {
         </div>
 
         <div>
-          <button className="w-72 bg-black h-16 text-center text-white font-bold rounded-xl my-5 flex flex-row flex-nowrap items-center justify-center">
+          <button
+          className="w-72 bg-black h-16 text-center text-white font-bold rounded-xl my-5 flex flex-row flex-nowrap items-center justify-center"
+          onClick={async (e)=>{handleDelete(e)}}
+          >
             MARCAR COMO ENTREGE E APAGAR
           </button>
-          <button className="w-72 bg-black h-16 text-center text-white font-bold rounded-xl mb-5 flex flex-row flex-nowrap items-center justify-center">
+
+
+          {/* <button className="w-72 bg-black h-16 text-center text-white font-bold rounded-xl mb-5 flex flex-row flex-nowrap items-center justify-center">
           <BsWhatsapp size={20} className="mr-5"/>
             WhatsApp Do Cliente
           </button>
-
           <button className="w-72 bg-black h-16 text-center text-white font-bold rounded-xl mb-5 flex flex-row flex-nowrap items-center justify-center">
             <BsInstagram size={20} className="mr-5"/>
             Instagram Do Cliente
-          </button>
+          </button> */}
         </div>
       </main>
       <Footer />
