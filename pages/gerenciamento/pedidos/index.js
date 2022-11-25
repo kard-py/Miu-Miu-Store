@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export async function getServerSideProps(ctx){
-  const r = await fetch("http://localhost:3000/api/listPedidos", {method: "GET"}).then((Response)=>{
+  const r = await fetch("https://miu-miu-store.vercel.app/api/listPedidos", {method: "GET"}).then((Response)=>{
     return Response.json()
   })
   return {

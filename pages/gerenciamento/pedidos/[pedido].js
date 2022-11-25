@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 
 export const getServerSideProps = async (ctx) => {
     let uid = ctx.query.pedido
-    const res = await axios.get(`http://localhost:3000/api/pedido/${uid}`)
+    const res = await axios.get(`https://miu-miu-store.vercel.app/api/pedido/${uid}`)
     return {
         props:{
             pedido:res.data
