@@ -38,7 +38,7 @@ export default function Pedidos(props) {
     const payload = {
       remove_id:props.pedido.uid
     }
-    const r = await axios.delete("/api/removePedido", {data: payload})
+    const r = await axios.delete("/api/removePedido", payload)
 
     if(r.data.msg === "OK"){
       alert("Pedido Removido Com Sucesso! Voltando Para A paginha de Pedidos")
