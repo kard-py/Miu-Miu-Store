@@ -18,7 +18,7 @@ export default function Header() {
         </div>
         <div className="flex flex-1">
           <Link href="/">
-          <h1 className="text-white lg:text-5xl text-2xl font-bold">Miu Miu Store</h1>
+          <h1 className="text-white lg:text-5xl text-xl font-bold">Miu Miu Store</h1>
           </Link>
         </div>
         <div className="mr-5">
