@@ -11,11 +11,15 @@ export default async function handler(req, res) {
   }
 
   const db = await connectToDataBase(uri)
-  const collection = await db.collection("Pedidos")
+  
 
-  const item = {uid: req.query.uid};
+  const item = {
+    uid: req.query.uid
+  };
 
-  const r = await collection.deleteOne(item)
+
+  const r = await db.collection("Pedidos").deleteOne(item);
+
 
   res.status(201).json({ msg: "OK", data: r })
 }
