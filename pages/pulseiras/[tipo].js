@@ -8,6 +8,7 @@ import axios from "axios";
 
 export const getServerSideProps = async (ctx) => {
   const tipo = ctx.query.tipo;
+  const cores = await axios.get("https://miu-miu-store.vercel.app/api/listCores")
   if(tipo != "fina" && tipo !== "grossa"){
     return {
       redirect: {
@@ -19,6 +20,7 @@ export const getServerSideProps = async (ctx) => {
   }
   return {
     props:{
+      cores: cores.data
       tipo: tipo,
     }
   }
@@ -37,7 +39,7 @@ export default function Pulseiras(props) {
   const [dataEntrega, setDataEntrega] = useState("")
   const [medida, setMedida] = useState("")
   useEffect(()=>{
-    let cores = [["Preto","#000000"],["Branco","#FFFFFF"],["Azul","#0000FF"],["Amarelo","#FFFF00"],["Vermelho","#FF0000"],["Salmão","#FA8072"],["Céu Azul Profundo","#00BFFF"],["Ouro","#FFD700"],["Azul aço","#4682B4"],["centáurea azul","#6495ED"],["Ciano","#00FFFF"],["água-marinha","#7FFFD4"],["Azul escuro","#00008B"],["Trapaceiro azul","#1E90FF"],["Turquesa","#40E0D0"],["Ciano escuro","#008B8B"],["Verde","#008000"],["Marrom Sela","#8B4513"],["Índigo","#4B0082"],["Roxo médio (lilás)","#9370DB"],["Vermelho Violeta Médio","#C71585"],["Rosa escuro","#FF1493"],["Luz rosa","#FFB6C1"],["Tijolo Refratário","#B22222"],["Laranja Vermelho","#FF4500"],["Bisque","#FFE4C4"],["Laranja","#FFA500"],["Laranja escuro","#FF8C00"],["Verde escuro","#006400"],]
+    let cores = props.cores
     setColors(cores)
     if(props.tipo == "fina"){
       setN("3")
@@ -93,17 +95,17 @@ export default function Pulseiras(props) {
         <form className="flex flex-col w-full h-fit p-2 items-center mb-10" onSubmit={async (e) => {e.preventDefault(); await handleSubmit()}}>
           <div className="hidden md:flex flex-wrap m-5 justify-center">
               <select style={{"background-color":cor1}} className={`w-fit m-2 h-14 p-2 ${cor1 === "#000000"? "text-white":"text-black"} rounded-md outline-none border-black border`}onChange={(e)=>{setCor1(e.currentTarget.value);}}>
-                {colors.map((cor)=>(<option key={cor[1]} value={cor[1]}>{cor[0]}</option>))}
+                {colors.map((cor)=>(<option key={cor["codigo"]} value={cor["codigo"]}>{cor["nome"]}</option>))}
               </select>
               <select style={{"background-color":cor2}} className={`w-fit m-2 h-14 p-2 ${cor2 === "#000000"? "text-white":"text-black"} rounded-md outline-none border-black border`}onChange={(e)=>{setCor2(e.currentTarget.value);}}>
-                {colors.map((cor)=>(<option key={cor[1]} value={cor[1]}>{cor[0]}</option>))}
+                {colors.map((cor)=>(<option key={cor["codigo"]} value={cor["codigo"]}>{cor["nome"]}</option>))}
               </select>
               <select style={{"background-color":cor3}} className={`w-fit m-2 h-14 p-2 ${cor3 === "#000000"? "text-white":"text-black"} rounded-md outline-none border-black border`}onChange={(e)=>{setCor3(e.currentTarget.value);}}>
-                {colors.map((cor)=>(<option key={cor[1]} value={cor[1]}>{cor[0]}</option>))}
+                {colors.map((cor)=>(<option key={cor["codigo"]} value={cor["codigo"]}>{cor["nome"]}</option>))}
               </select>
               {n === "4"?
                   <select style={{"background-color":cor4}} className={`w-fit m-2 h-14 p-2 ${cor4 === "#000000"? "text-white":"text-black"} rounded-md outline-none border-black border`}onChange={(e)=>{setCor4(e.currentTarget.value);}}>
-                    {colors.map((cor)=>(<option key={cor[1]} value={cor[1]}>{cor[0]}</option>))}
+                    {colors.map((cor)=>(<option key={cor["codigo"]} value={cor["codigo"]}>{cor["nome"]}</option>))}
                   </select>
                   :
                   <></>
@@ -111,17 +113,17 @@ export default function Pulseiras(props) {
           </div>
           <div className="md:hidden grid grid-cols-2 grid-rows-2 gap-5 p-5 justify-center">
               <select style={{"background-color":cor1, "color":cor1}} className={`w-14 h-14 p-2 rounded-md outline-none border-black border`}onChange={(e)=>{setCor1(e.currentTarget.value);}}>
-                {colors.map((cor)=>(<option key={cor[1]} value={cor[1]}>{cor[0]}</option>))}
+                {colors.map((cor)=>(<option key={cor["codigo"]} value={cor["codigo"]}>{cor["nome"]}</option>))}
               </select>
               <select style={{"background-color":cor2, "color":cor2}} className={`w-14 h-14 p-2 rounded-md outline-none border-black border`}onChange={(e)=>{setCor2(e.currentTarget.value);}}>
-                {colors.map((cor)=>(<option key={cor[1]} value={cor[1]}>{cor[0]}</option>))}
+                {colors.map((cor)=>(<option key={cor["codigo"]} value={cor["codigo"]}>{cor["nome"]}</option>))}
               </select>
               <select style={{"background-color":cor3, "color":cor3}} className={`w-14 h-14 p-2 rounded-md outline-none border-black border`}onChange={(e)=>{setCor3(e.currentTarget.value);}}>
-                {colors.map((cor)=>(<option key={cor[1]} value={cor[1]}>{cor[0]}</option>))}
+                {colors.map((cor)=>(<option key={cor["codigo"]} value={cor["codigo"]}>{cor["nome"]}</option>))}
               </select>
               {n === "4"?
                   <select style={{"background-color":cor4, "color":cor4}} className={`w-14 h-14 p-2 rounded-md outline-none border-black border`}onChange={(e)=>{setCor4(e.currentTarget.value);}}>
-                    {colors.map((cor)=>(<option key={cor[1]} value={cor[1]}>{cor[0]}</option>))}
+                    {colors.map((cor)=>(<option key={cor["codigo"]} value={cor["codigo"]}>{cor["nome"]}</option>))}
                   </select>
                   :
                   <></>

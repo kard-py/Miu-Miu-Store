@@ -2,7 +2,6 @@ import Header from "../../../src/components/Header";
 import Footer from "../../../src/components/Footer";
 import Link from "next/link";
 import axios from "axios";
-import { BsInstagram, BsWhatsapp } from "react-icons/bs";
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
