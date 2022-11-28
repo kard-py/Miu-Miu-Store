@@ -15,7 +15,7 @@ export default function Gen() {
         })
 
         if(r.data.msg == "OK"){
-            alert("COR ADICIONADA VOLTANDO PARA PAGINA DE GERENCIAMENTO")
+            alert("COR ADICIONADA VOLTANDO PARA PAGINA DE CORES")
             router.push("/gerenciamento/cadastro-de-cores/")
         }
 
