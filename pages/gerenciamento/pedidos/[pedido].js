@@ -64,12 +64,14 @@ export default function Pedidos(props) {
         </div>
 
         <div>
-            <button
-            className="w-72 bg-black h-16 text-center text-white font-bold rounded-xl my-5 flex flex-row flex-nowrap items-center justify-center"
-            onClick={async (e)=>{handleStatus(e)}}
-            >
-              MARCAR COMO FEITO
-            </button>
+            {data.status !== "FEITA" && (
+              <button
+              className="w-72 bg-black h-16 text-center text-white font-bold rounded-xl my-5 flex flex-row flex-nowrap items-center justify-center"
+              onClick={async (e)=>{handleStatus(e)}}
+              >
+                MARCAR COMO FEITO
+              </button>
+            )}
             
             <button
             className="w-72 bg-black h-16 text-center text-white font-bold rounded-xl my-5 flex flex-row flex-nowrap items-center justify-center"
