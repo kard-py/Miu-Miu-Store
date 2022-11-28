@@ -34,7 +34,7 @@ export default function Pedidos({ data }) {
           <Link 
           key={i} 
           href={`/gerenciamento/pedidos/${pedido.uid}`} 
-          className={`flex-col m-3 ${pedido.data.status == "REGISTRADA" && "bg-black"} ${pedido.data.status == "FEITO" && "bg-[#B6B6B6]"}  text-white font-bold text-sm flex justify-center rounded-md text-center hover:bg-green-600 items-center w-36 h-36`}>
+          className={`flex-col m-3 ${pedido.data.status == "REGISTRADA" && "bg-black"} ${pedido.data.status == "FEITO" && "bg-[#787878]"}  text-white font-bold text-sm flex justify-center rounded-md text-center hover:bg-green-600 items-center w-36 h-36`}>
             {pedido.data.tipo}
             <br/>-<br/>
             <span className="italic">
