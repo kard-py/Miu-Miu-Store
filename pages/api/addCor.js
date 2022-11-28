@@ -14,12 +14,7 @@ export default async function handler(req, res) {
   const db = await connectToDataBase(uri)
   const collection = await db.collection("Cores")
 
-  await collection.insertOne({
-    _id: uid(24),
-    uid: uid(24),
-    data: req.body,
-    addIn: new Date()
-  })
+  await collection.insertOne(req.body)
   
   res.status(201).json({ msg: "OK" })
   return
