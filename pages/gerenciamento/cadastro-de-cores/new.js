@@ -53,8 +53,8 @@ export default function Gen() {
             <input 
             className="w-14 h-14 rounded-md outline-none border-black border"
             type={"color"}
-            value={cor}
-            onChange={(e)=>{setCor(e.currentTarget.value);}}
+            value={nome}
+            onChange={(e)=>{setNome(e.currentTarget.value);}}
             />
             </div>
             </div>
