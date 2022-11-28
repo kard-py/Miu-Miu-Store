@@ -30,7 +30,18 @@ export default function Pedidos({ data }) {
       <main className="flex flex-col justify-center items-center">
         <h1 className="text-3xl font-bold text-center my-5">Lista de Pedidos:</h1>
         <div className="flex flex-wrap mb-10 max-w-2xl justify-center items-center">
-          {pedidos.map((pedido, i)=>(<Link key={i} href={`/gerenciamento/pedidos/${pedido.uid}`} className="flex-col m-3 bg-black text-white font-bold text-sm flex justify-center rounded-md text-center hover:bg-green-600 items-center w-36 h-36">{pedido.data.tipo}<br/>-<br/><span className="italic">{pedido.data.cliente}</span></Link>))}
+          {pedidos.map((pedido, i)=>(
+          <Link 
+          key={i} 
+          href={`/gerenciamento/pedidos/${pedido.uid}`} 
+          className={`flex-col m-3 ${pedido.data.status == "REGISTRADA" && "bg-black"} ${pedido.data.status == "FEITO" && "bg-[#B6B6B6]"}  text-white font-bold text-sm flex justify-center rounded-md text-center hover:bg-green-600 items-center w-36 h-36`}>
+            {pedido.data.tipo}
+            <br/>-<br/>
+            <span className="italic">
+              {pedido.data.cliente}
+            </span>
+            </Link>
+            ))}
         </div>
         
         

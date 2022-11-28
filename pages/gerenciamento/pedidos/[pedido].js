@@ -60,6 +60,7 @@ export default function Pedidos(props) {
           <p className="flex items-center justify-center text-xl">Cores: {data.cores.map((cor, i)=>(<div key={i} className={`m-1 w-7 h-7`} style={{backgroundColor: cor}}/>))}</p>
           <p className="text-xl">Nome Do Cliente: <span className="font-bold">{data.cliente}</span></p>
           <p className="text-xl">Data De Enrega: <span className="font-bold">{dateEntr}</span></p>
+          <p className="text-xl">Status Do Pedido: <span className="font-bold">{data.status}</span></p>
         </div>
 
         <div>
