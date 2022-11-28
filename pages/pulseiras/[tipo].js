@@ -8,7 +8,9 @@ import axios from "axios";
 
 export const getServerSideProps = async (ctx) => {
   const tipo = ctx.query.tipo;
-  const cores = await axios.get("https://miu-miu-store.vercel.app/api/listCores")
+  const cores = await fetch("https://miu-miu-store.vercel.app/api/listCores", {method: "GET"}).then((Response)=>{
+    return Response.json()
+  })
   if(tipo != "fina" && tipo !== "grossa"){
     return {
       redirect: {
@@ -40,6 +42,7 @@ export default function Pulseiras(props) {
   const [medida, setMedida] = useState("")
   useEffect(()=>{
     let cores = props.cores
+    console.log(cores);
     setColors(cores)
     if(props.tipo == "fina"){
       setN("3")
@@ -93,6 +96,7 @@ export default function Pulseiras(props) {
         <h1 className="text-4xl font-bold mb-2">Pulseira - {props.tipo} </h1>
         <h2 className="italic text-center">Unisex <br/>Com<br/>{n} Fios e {n} Cores Sua Preferencia!</h2>
         <form className="flex flex-col w-full h-fit p-2 items-center mb-10" onSubmit={async (e) => {e.preventDefault(); await handleSubmit()}}>
+          
           <div className="hidden md:flex flex-wrap m-5 justify-center">
               <select style={{"background-color":cor1}} className={`w-fit m-2 h-14 p-2 ${cor1 === "#000000"? "text-white":"text-black"} rounded-md outline-none border-black border`}onChange={(e)=>{setCor1(e.currentTarget.value);}}>
                 {colors.map((cor)=>(<option key={cor["codigo"]} value={cor["codigo"]}>{cor["nome"]}</option>))}
