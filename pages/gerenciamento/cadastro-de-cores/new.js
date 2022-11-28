@@ -6,12 +6,12 @@ import { useRouter } from "next/router";
 import axios from "axios";
 export default function Gen() {
     const [cor, setCor] = useState("#00000")
-    const [nome, setNome] = useState("#00000")
+    const [nome, setNome] = useState("")
     const router = useRouter()
     async function handleSubmit(){
         const r = await axios.put("/api/addCor", {
-            codigo:cor,
-            nome:nome
+            nome:nome,
+            codigo:cor
         })
 
         if(r.data.msg == "OK"){
@@ -48,13 +48,16 @@ export default function Gen() {
             rounded-xl
             p-2
             whitespace-nowrap 
-            " />
+            " 
+            value={nome}
+            onChange={(e)=>{setNome(e.currentTarget.value);}}
+            />
             <div className="rounded-md border-black border w-fit h-fit p-px lg:p-1 flex justify-center items-center">
             <input 
             className="w-14 h-14 rounded-md outline-none border-black border"
             type={"color"}
-            value={nome}
-            onChange={(e)=>{setNome(e.currentTarget.value);}}
+            value={cor}
+            onChange={(e)=>{setCor(e.currentTarget.value);}}
             />
             </div>
             </div>
