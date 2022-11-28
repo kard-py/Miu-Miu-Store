@@ -40,6 +40,14 @@ export default function Pedidos(props) {
       router.push("/gerenciamento/pedidos/")
     }
   }
+  const handleStatus = async (e) => {
+    e.preventDefault()
+    const r = await axios.put(`/api/upPedido/${props.uid}`, {status:"FEITO"})
+    if(r.data.msg === "OK"){
+      alert("Pedido Atualizado Com Sucesso!")
+      router.reload()
+    }
+  }
 
   return (
     <>
@@ -55,12 +63,19 @@ export default function Pedidos(props) {
         </div>
 
         <div>
-          <button
-          className="w-72 bg-black h-16 text-center text-white font-bold rounded-xl my-5 flex flex-row flex-nowrap items-center justify-center"
-          onClick={async (e)=>{handleDelete(e)}}
-          >
-            MARCAR COMO ENTREGE E APAGAR
-          </button>
+            <button
+            className="w-72 bg-black h-16 text-center text-white font-bold rounded-xl my-5 flex flex-row flex-nowrap items-center justify-center"
+            onClick={async (e)=>{handleStatus(e)}}
+            >
+              MARCAR COMO FEITO
+            </button>
+            
+            <button
+            className="w-72 bg-black h-16 text-center text-white font-bold rounded-xl my-5 flex flex-row flex-nowrap items-center justify-center"
+            onClick={async (e)=>{handleDelete(e)}}
+            >
+              MARCAR COMO ENTREGE E APAGAR
+            </button>
 
 
           {/* <button className="w-72 bg-black h-16 text-center text-white font-bold rounded-xl mb-5 flex flex-row flex-nowrap items-center justify-center">
