@@ -1,3 +1,5 @@
+import { ObjectId } from "mongodb"
+import { parseUrl } from "next/dist/shared/lib/router/utils/parse-url"
 import { uri, connectToDataBase } from "../../../utils/mongodb"
 export default async function handler(req, res) {
   if(req.method != "DELETE"){
@@ -14,7 +16,7 @@ export default async function handler(req, res) {
   
 
   const item = {
-    _id: req.query.uid,
+    _id: ObjectId(req.query.uid),
   };
 
 
