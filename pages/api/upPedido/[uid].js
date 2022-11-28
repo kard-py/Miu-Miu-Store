@@ -1,6 +1,6 @@
 import { uri, connectToDataBase } from "../../../utils/mongodb"
 export default async function handler(req, res) {
-  if(req.method != "GET"){
+  if(req.method != "PUT"){
     res.status(405).json({msg: "Method not allowed"})
     return
   }
@@ -9,9 +9,12 @@ export default async function handler(req, res) {
   const collection = await db.collection("Pedidos")
 
   const r = await collection.findOne({uid: req.query.uid})
-
-
   
+  r.data.estado = req.body.estado
+
+
+  await collection.updateOne({uid: req.query.uid}, { $set: r }, { upsert: true });
+
 
   res.status(201).json({ msg: "OK", data: r })
 }
