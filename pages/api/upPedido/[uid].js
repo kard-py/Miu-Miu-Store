@@ -9,8 +9,8 @@ export default async function handler(req, res) {
   const collection = await db.collection("Pedidos")
 
   const r = await collection.findOne({uid: req.query.uid})
-  
-  r.data.estado = req.body.estado
+
+  r.data.status = req.body.status
 
 
   await collection.updateOne({uid: req.query.uid}, { $set: r }, { upsert: true });
