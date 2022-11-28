@@ -20,7 +20,7 @@ export const getServerSideProps = async (ctx) => {
   }
   return {
     props:{
-      cores: cores.data
+      cores: cores.data,
       tipo: tipo,
     }
   }
