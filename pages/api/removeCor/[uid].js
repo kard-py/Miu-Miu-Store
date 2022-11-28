@@ -14,7 +14,7 @@ export default async function handler(req, res) {
   
 
   const item = {
-    uid: req.query.uid
+    _id: req.query.uid,
   };
 
 
