@@ -42,7 +42,7 @@ export default function Pedidos(props) {
   }
   const handleStatus = async (e) => {
     e.preventDefault()
-    const r = await axios.put(`/api/upPedido/${props.uid}`, {status:"FEITO"})
+    const r = await axios.put(`/api/upPedido/${props.uid}`, {status:"FEITA"})
     if(r.data.msg === "OK"){
       alert("Pedido Atualizado Com Sucesso!")
       router.reload()
