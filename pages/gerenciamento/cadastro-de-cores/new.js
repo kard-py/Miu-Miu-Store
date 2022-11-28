@@ -3,6 +3,7 @@ import Footer from "../../../src/components/Footer";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import axios from "axios";
 export default function Gen() {
     const [cor, setCor] = useState("#00000")
     const [nome, setNome] = useState("#00000")
