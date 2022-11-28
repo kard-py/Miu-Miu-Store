@@ -16,7 +16,7 @@ export default function Gen() {
 
         if(r.data.msg == "OK"){
             alert("COR ADICIONADA VOLTANDO PARA PAGINA DE GERENCIAMENTO")
-            router.push("/gerenciamento")
+            router.push("/gerenciamento/cadastro-de-cores")
         }
 
     }
