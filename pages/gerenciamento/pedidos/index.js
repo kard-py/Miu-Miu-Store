@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import { useEffect, useState } from "react";
 
-export async function getStaticProps(ctx) {
+export async function getServerSideProps(ctx) {
   const r = await fetch("https://miu-miu-store.vercel.app/api/listPedidos", {
     method: "GET",
   }).then((Response) => {
