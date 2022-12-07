@@ -20,8 +20,18 @@ export default function Menu() {
             >
               Tornozeleiras
             </Link>
-            {/* <Link href="chaveiros" className="w-full bg-black h-24 text-sm text-white flex flex-1 justify-center items-center text-center duration-300 hover:bg-green-600 shadow-zinc-800 shadow-md">Chaveiros</Link> */}
-            {/* <Link href="coleiras" className="w-full bg-black h-24 text-sm text-white flex flex-1 justify-center items-center text-center duration-300 hover:bg-green-600 shadow-zinc-800 shadow-md">Coleiras</Link> */}
+            <Link
+              href="coleiras"
+              className="w-full bg-black h-24 text-sm text-white flex flex-1 justify-center items-center text-center duration-300 hover:bg-green-600 shadow-zinc-800 shadow-md"
+            >
+              Coleiras
+            </Link>
+            <Link
+              href="chaveiros"
+              className="w-full bg-black h-24 text-sm text-white flex flex-1 justify-center items-center text-center duration-300 hover:bg-green-600 shadow-zinc-800 shadow-md"
+            >
+              Chaveiros
+            </Link>
           </div>
         </div>
       </main>

@@ -12,11 +12,11 @@ export const getServerSideProps = async (ctx) => {
   }).then((Response) => {
     return Response.json();
   });
-  if (tipo != "fina" && tipo !== "grossa") {
+  if (tipo != "fino" && tipo !== "grosso") {
     return {
       redirect: {
         permanent: false,
-        destination: "/tornozeleiras",
+        destination: "/chaveiros",
       },
       props: {},
     };
@@ -29,7 +29,7 @@ export const getServerSideProps = async (ctx) => {
   };
 };
 
-export default function Tornozeleiras(props) {
+export default function Chaveiros(props) {
   const router = useRouter();
   const [n, setN] = useState("");
   const [colors, setColors] = useState([]);
@@ -44,19 +44,19 @@ export default function Tornozeleiras(props) {
     let cores = props.cores;
     console.log(cores);
     setColors(cores);
-    if (props.tipo == "fina") {
+    if (props.tipo == "fino") {
       setN("3");
-    } else if (props.tipo == "grossa") {
+    } else if (props.tipo == "grosso") {
       setN("4");
     } else {
-      router.push("/tornozeleiras");
+      router.push("/chaveiros");
     }
   }, []);
 
   const handleSubmit = async () => {
     if (n === "3") {
       let data = {
-        tipo: "Tornozeleira Fina",
+        tipo: "Chaveiro Fino",
         fios: n,
         cores: [cor1, cor2, cor3],
         medida: medida,
@@ -73,7 +73,7 @@ export default function Tornozeleiras(props) {
       }
     } else if (n === "4") {
       let data = {
-        tipo: "Tornozeleira Grossa",
+        tipo: "Chaveiro Grosso",
         fios: n,
         cores: [cor1, cor2, cor3, cor4],
         medida: medida,
@@ -96,9 +96,7 @@ export default function Tornozeleiras(props) {
     <>
       <Header />
       <main className="flex flex-1 h-full my-5 mx-5 justify-center items-center flex-col">
-        <h1 className="text-4xl font-bold mb-2">
-          Tornozeleira - {props.tipo}{" "}
-        </h1>
+        <h1 className="text-4xl font-bold mb-2">Chaveiro - {props.tipo} </h1>
         <h2 className="italic text-center">
           Unisex <br />
           Com

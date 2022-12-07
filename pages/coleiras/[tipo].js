@@ -16,7 +16,7 @@ export const getServerSideProps = async (ctx) => {
     return {
       redirect: {
         permanent: false,
-        destination: "/tornozeleiras",
+        destination: "/coleiras",
       },
       props: {},
     };
@@ -29,7 +29,7 @@ export const getServerSideProps = async (ctx) => {
   };
 };
 
-export default function Tornozeleiras(props) {
+export default function Coleiras(props) {
   const router = useRouter();
   const [n, setN] = useState("");
   const [colors, setColors] = useState([]);
@@ -49,14 +49,14 @@ export default function Tornozeleiras(props) {
     } else if (props.tipo == "grossa") {
       setN("4");
     } else {
-      router.push("/tornozeleiras");
+      router.push("/coleiras");
     }
   }, []);
 
   const handleSubmit = async () => {
     if (n === "3") {
       let data = {
-        tipo: "Tornozeleira Fina",
+        tipo: "Coleira Fina",
         fios: n,
         cores: [cor1, cor2, cor3],
         medida: medida,
@@ -73,7 +73,7 @@ export default function Tornozeleiras(props) {
       }
     } else if (n === "4") {
       let data = {
-        tipo: "Tornozeleira Grossa",
+        tipo: "Coleira Grossa",
         fios: n,
         cores: [cor1, cor2, cor3, cor4],
         medida: medida,
@@ -96,9 +96,7 @@ export default function Tornozeleiras(props) {
     <>
       <Header />
       <main className="flex flex-1 h-full my-5 mx-5 justify-center items-center flex-col">
-        <h1 className="text-4xl font-bold mb-2">
-          Tornozeleira - {props.tipo}{" "}
-        </h1>
+        <h1 className="text-4xl font-bold mb-2">Coleira - {props.tipo} </h1>
         <h2 className="italic text-center">
           Unisex <br />
           Com
