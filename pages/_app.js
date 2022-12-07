@@ -6,7 +6,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <Head>
         <title>Miu Miu Store</title>
-        <link rel="icon" href="/logo.png" />
+        <link rel="icon" href="favicon.ico" />
       </Head>
       <Component {...pageProps} />
     </>
