@@ -1,0 +1,18 @@
+{
+  "name": "Miu Miu Store",
+  "short_name": "Miu Miu Store",
+  "description": "Gerenciamento da Miu Miu",
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "display": "standalone",
+  "lang": "pt-BR",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/logo.jpg",
+      "sizes": "150x150",
+      "type": "image/jpg"
+    }
+  ]
+}

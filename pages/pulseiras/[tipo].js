@@ -95,7 +95,7 @@ export default function Pulseiras(props) {
   return (
     <>
       <Header />
-      <main className="flex flex-1 h-full my-5 mx-5 justify-center items-center flex-col">
+      <main className="flex flex-1 h-full my-5 pb-10 mx-5 justify-center items-center flex-col">
         <h1 className="text-4xl font-bold mb-2">Pulseira - {props.tipo} </h1>
         <h2 className="italic text-center">
           Unisex <br />
