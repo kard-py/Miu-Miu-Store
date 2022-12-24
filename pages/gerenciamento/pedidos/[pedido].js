@@ -17,7 +17,7 @@ export const getServerSideProps = async (ctx) => {
   return {
     props: {
       uid: uid,
-      pedido: res.data,
+      pedido: res,
     },
   };
 };
