@@ -28,8 +28,10 @@ export default function Pedidos() {
           Lista de Pedidos:
         </h1>
         <div className="flex flex-wrap mb-10 max-w-2xl justify-center items-center">
-          {loading ? <h1>Carregando..</h1> :
-          {pedidos.map((pedido, i) => (
+          {loading ? 
+            <h1>Carregando..</h1> 
+            :
+          pedidos.map((pedido, i) => (
             <Link
               key={i}
               href={`/gerenciamento/pedidos/${pedido.uid}`}
@@ -44,7 +46,7 @@ export default function Pedidos() {
               <span className="italic">{pedido.data.cliente}</span>
               <span className="italic">{pedido.data.status}</span>
             </Link>
-          ))}
+          ))
           }
         </div>
       </main>
