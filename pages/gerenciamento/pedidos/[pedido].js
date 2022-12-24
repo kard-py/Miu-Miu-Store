@@ -8,9 +8,12 @@ import { useRouter } from "next/router";
 
 export const getServerSideProps = async (ctx) => {
   let uid = ctx.query.pedido;
-  const res = await axios.get(
-    `https://miu-miu-store.vercel.app/api/pedido/${uid}`
-  );
+  const res = await fetch(`https://miu-miu-store.vercel.app/api/pedido/${uid}`, {
+    method: "GET",
+  }).then((Response) => {
+    return Response.json();
+  });
+
   return {
     props: {
       uid: uid,
