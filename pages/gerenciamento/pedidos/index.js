@@ -19,7 +19,7 @@ export async function getServerSideProps(ctx) {
 
 export default function Pedidos({ data }) {
   const [pedidos, setPedidos] = useState([]);
-  useEffect(() => {
+  useEffect(async () => {
 
   const r = await fetch("https://miu-miu-store.vercel.app/api/listPedidos", {
     method: "GET",
