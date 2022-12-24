@@ -28,7 +28,7 @@ export default function Pedidos() {
           Lista de Pedidos:
         </h1>
         <div className="flex flex-wrap mb-10 max-w-2xl justify-center items-center">
-          {loading ? <h1>Carregando..<\h1> :
+          {loading ? <h1>Carregando..</h1> :
           {pedidos.map((pedido, i) => (
             <Link
               key={i}
