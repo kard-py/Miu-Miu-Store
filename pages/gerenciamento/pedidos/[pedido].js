@@ -41,7 +41,7 @@ export default function Pedidos(props) {
     const r = await axios.delete(`/api/removePedido/${props.uid}`);
     if (r.data.msg === "OK") {
       alert("Pedido Removido Com Sucesso! Voltando Para A paginha de Pedidos");
-      router.back();
+      router.push("/gerenciamento/pedidos");
     }
   };
   const handleStatus = async (e) => {
