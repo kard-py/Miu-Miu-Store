@@ -6,15 +6,18 @@ import { useEffect, useState } from "react";
 
 export default function Pedidos() {
   const [pedidos, setPedidos] = useState([]);
+  const [loading, setLoading] = useState(false);
   useEffect(async () => {
 
   const r = await fetch("https://miu-miu-store.vercel.app/api/listPedidos", {
     method: "GET",
   }).then((Response) => {
+    setLoading(true)
     return Response.json();
   });
 
     setPedidos(r.data);
+    setLoading(false)
   }, []);
 
   return (
@@ -25,6 +28,7 @@ export default function Pedidos() {
           Lista de Pedidos:
         </h1>
         <div className="flex flex-wrap mb-10 max-w-2xl justify-center items-center">
+          {loading ? <h1>Carregando..<\h1> :
           {pedidos.map((pedido, i) => (
             <Link
               key={i}
@@ -41,6 +45,7 @@ export default function Pedidos() {
               <span className="italic">{pedido.data.status}</span>
             </Link>
           ))}
+          }
         </div>
       </main>
       <Footer />
