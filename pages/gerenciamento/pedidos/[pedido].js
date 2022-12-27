@@ -8,34 +8,32 @@ import { useRouter } from "next/router";
 
 export const getServerSideProps = async (ctx) => {
   let uid = ctx.query.pedido;
-  const res = await fetch(`https://miu-miu-store.vercel.app/api/pedido/${uid}`, {
-    method: "GET",
-  }).then((Response) => {
-    return Response.json();
-  });
-
+  let method = ctx.req.headers.referer.split(":");
+  let url = `${method[0]}://${ctx.req.headers.host}`;
+  const res = await axios.get(`${url}/api/pedido/${uid}`);
+  console.log(res.data.data);
   return {
     props: {
       uid: uid,
-      pedido: res,
+      pedido: res.data.data,
     },
   };
 };
 
 export default function Pedidos(props) {
-  const [data, setData] = useState(props.pedido.data.data);
+  const [data, setData] = useState(props.pedido);
   const [dateRegs, setDateRegs] = useState(null);
   const [dateEntr, setDateEntr] = useState(null);
   const router = useRouter();
 
   useEffect(() => {
-    let dr = new Date(props.pedido.data.addIn);
+    let dr = new Date(data.addIn);
     setDateRegs(
       `${dr.getUTCDate()}/${
         dr.getUTCMonth() + 1
       }/${dr.getFullYear()} as ${dr.getHours()}:${dr.getMinutes()}`
     );
-    let de = data.entrega.split("-");
+    let de = data.data.entrega.split("-");
     setDateEntr(`${de[2]}/${de[1]}/${de[0]}`);
   }, []);
 
@@ -52,9 +50,10 @@ export default function Pedidos(props) {
     const r = await axios.put(`/api/upPedido/${props.uid}`, {
       status: "FEITA",
     });
+    const res = await axios.get(`/api/pedido/${props.uid}`);
+    setData(res.data.data);
     if (r.data.msg === "OK") {
       alert("Pedido Atualizado Com Sucesso!");
-      router.reload();
     }
   };
 
@@ -70,33 +69,35 @@ export default function Pedidos(props) {
           Pedido
         </h1>
         <div className="flex flex-col justify-center items-start gap-2">
-          <p className="text-2xl font-bold">{data.tipo}</p>
+          <p className="text-2xl font-bold">{data.data.tipo}</p>
           <p className="text-xl">
-            Tamanho: <span className="font-bold">{data.medida}cm</span>
+            Tamanho: <span className="font-bold">{data.data.medida}cm</span>
           </p>
           <p className="flex items-center justify-center text-xl">
             Cores:{" "}
-            {data.cores.map((cor, i) => (
+            {data.data.cores.map((cor, i) => (
               <div
                 key={i}
-                className={`m-1 w-7 h-7`}
+                className={`m-1 border border-black w-7 h-7`}
                 style={{ backgroundColor: cor }}
               />
             ))}
           </p>
           <p className="text-xl">
-            Nome Do Cliente: <span className="font-bold">{data.cliente}</span>
+            Nome Do Cliente:{" "}
+            <span className="font-bold">{data.data.cliente}</span>
           </p>
           <p className="text-xl">
             Data De Enrega: <span className="font-bold">{dateEntr}</span>
           </p>
           <p className="text-xl">
-            Status Do Pedido: <span className="font-bold">{data.status}</span>
+            Status Do Pedido:{" "}
+            <span className="font-bold">{data.data.status}</span>
           </p>
         </div>
 
         <div>
-          {data.status !== "FEITA" && (
+          {data.data.status !== "FEITA" && (
             <button
               className="w-72 bg-black h-16 text-center text-white font-bold rounded-xl my-5 flex flex-row flex-nowrap items-center justify-center"
               onClick={async (e) => {

@@ -7,7 +7,9 @@ import axios from "axios";
 
 export const getServerSideProps = async (ctx) => {
   const tipo = ctx.query.tipo;
-  const cores = await fetch("https://miu-miu-store.vercel.app/api/listCores", {
+  let method = ctx.req.headers.referer.split(":");
+  let url = `${method[0]}://${ctx.req.headers.host}`;
+  const cores = await fetch(`${url}/api/listCores`, {
     method: "GET",
   }).then((Response) => {
     return Response.json();
@@ -64,10 +66,7 @@ export default function Pulseiras(props) {
         entrega: dataEntrega,
         status: "REGISTRADA",
       };
-      const r = await axios.put(
-        "https://miu-miu-store.vercel.app/api/addPedido",
-        { data: data }
-      );
+      const r = await axios.put("/api/addPedido", { data: data });
       if (r.data.msg == "OK") {
         router.push("/");
       }
@@ -81,10 +80,7 @@ export default function Pulseiras(props) {
         entrega: dataEntrega,
         status: "REGISTRADA",
       };
-      const r = await axios.put(
-        "https://miu-miu-store.vercel.app/api/addPedido",
-        { data: data }
-      );
+      const r = await axios.put("/api/addPedido", { data: data });
       if (r.data.msg == "OK") {
         alert("Pedido Registrado Com Sucesso Voltando Para Pagina Inicial");
         router.push("/");
